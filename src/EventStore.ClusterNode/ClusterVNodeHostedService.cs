@@ -276,7 +276,9 @@ namespace EventStore.ClusterNode {
 				.WithInitializationThreads(options.InitializationThreads)
 				.WithMaxAutoMergeIndexLevel(options.MaxAutoMergeIndexLevel)
 				.WithMaxAppendSize(options.MaxAppendSize)
-				.WithEnableAtomPubOverHTTP(options.EnableAtomPubOverHTTP);
+				.WithEnableAtomPubOverHTTP(options.EnableAtomPubOverHTTP)
+				.WithSslValidateMasterNode(options.SslValidateMasterNode)
+				.WithSslValidateSlaveNode(options.SslValidateSlaveNode);
 
 			if (options.GossipSeed.Length > 0)
 				builder.WithGossipSeeds(options.GossipSeed);
@@ -310,8 +312,6 @@ namespace EventStore.ClusterNode {
 				builder.WithUnsafeDisableFlushToDisk();
 			if (options.BetterOrdering)
 				builder.WithBetterOrdering();
-			if (options.SslValidateServer)
-				builder.ValidateSslServer();
 			if (options.UseInternalSsl)
 				builder.EnableSsl();
 			if (options.EnableExternalTCP)
